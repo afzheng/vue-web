@@ -6,12 +6,17 @@ import VueRouter from 'vue-router'
 import Detail from '../pages/goodsDetail'
 import Msg from '../components/Message.vue'
 import App from '../App.vue'
+import Home from '../pages/home'
+
+import HomeSoa from '../pages/SuperuiHome'
+import SuperuiInfo from '../components/superui/SuperuiInfo.vue'
 
 Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: resolve => require(['../pages/home'],resolve),
+    //component: resolve => require(['../pages/home'],resolve),
+    component:Home,
     meta: {
       title:'home'
     }
@@ -19,6 +24,14 @@ const routes = [
   {
     path: '/msg',
     component: Msg
+  },  {
+    path: '/homesoa',
+    component: HomeSoa,
+    children:[{
+      path:'info',
+      component:SuperuiInfo
+    }
+    ]
   },
   {
     path: '/app',
@@ -27,12 +40,6 @@ const routes = [
   {
     path: '/detail',
     component: Detail,
-    children: [
-      {
-        path:'msg',
-        component: Msg
-      }
-    ]
   }
 ]
 export default new VueRouter({

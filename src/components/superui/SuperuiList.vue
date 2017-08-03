@@ -2,10 +2,9 @@
 <ul>
   <li v-for="item in items">
     <div>
-      <span >className:</span>
+      <router-link to="/info">className:</router-link >
       <span>{{item.className}}</span>
     </div>
-
   </li>
 </ul>
 </template>

@@ -3,7 +3,7 @@
     <home-header></home-header>
     <div class="content">
       <ul class="cont-ul">
-        <list v-for="item in items" :price = "item.price" :title = "item.title" :img = "item.img"></list>
+        <list v-for="item in items" :price = "item.price" :title = "item.title" :img = "item.img" :key="item.id"></list>
       </ul>
     </div>
     <common-footer></common-footer>

@@ -10,7 +10,9 @@ var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
-var webpackConfig = require('./webpack.dev.conf')
+var webpackConfig = process.env.NODE_ENV === 'testing'
+  ? require('./webpack.prod.conf')
+  : require('./webpack.dev.conf')
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
@@ -21,6 +23,27 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
+/*datrua接口*/
+var appData = require('../src/json/good.json')
+var goods = appData.goods
+var apiRouter = express.Router()
+apiRouter.get('/good',function (req,res) {
+  res.json({
+    data:goods
+  })
+})
+app.use('/api', apiRouter)
+/*bestpay接口*/
+var appDatas = require('../src/json/bestpay-app.json')
+var bestpay = appDatas.bestpay
+var apiRouters = express.Router()
+apiRouters.get('/bestpay',function (req,res) {
+  res.json({
+    data:bestpay
+  })
+})
+app.use('/api', apiRouters)
+
 var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {

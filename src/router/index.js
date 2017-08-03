@@ -1,15 +1,40 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import Hello from '@/components/Hello'
+import VueRouter from 'vue-router'
+/*
+ import Home from '../pages/home'
+ */
+import Detail from '../pages/goodsDetail'
+import Msg from '../components/Message.vue'
+import App from '../App.vue'
 
-Vue.use(Router)
-
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Hello',
-      component: Hello
+Vue.use(VueRouter)
+const routes = [
+  {
+    path: '/',
+    component: resolve => require(['../pages/home'],resolve),
+    meta: {
+      title:'home'
     }
-  ]
+  },
+  {
+    path: '/msg',
+    component: Msg
+  },
+  {
+    path: '/app',
+    component: App
+  },
+  {
+    path: '/detail',
+    component: Detail,
+    children: [
+      {
+        path:'msg',
+        component: Msg
+      }
+    ]
+  }
+]
+export default new VueRouter({
+  routes
 })

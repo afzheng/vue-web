@@ -27,11 +27,6 @@ const routes = [
   },  {
     path: '/homesoa',
     component: HomeSoa,
-    children:[{
-      path:'info',
-      component:SuperuiInfo
-    }
-    ]
   },
   {
     path: '/app',

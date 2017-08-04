@@ -5,10 +5,6 @@ import Home from './pages/home.vue'
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
-Vue.use(ElementUI)
-
 import router from './router/index'
 
 Vue.config.productionTip = false
@@ -17,4 +13,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  components:{
+    Home
+  }
 })
